@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <style>
+        changer{
+            display:block;
+            text-align: center;
+            padding-top: 30%;
+            font-family: sans-serif;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<changer id="rotate">wow</changer>
+
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script>
+    var terms = ["term 1", "term 2", "term 3", "term 4"];
+    var entrances = ["animated bounceInLeft", "animated fadeInLeft", "animated rotateInDownLeft", "animated rotateInUpLeft",
+        "animated slideInLeft", "animated zoomInLeft", "animated rollIn"];
+    var exits = ["animated bounceOutRight", "animated fadeOutRight", "animated rotateOutDownRight", "animated rotateOutUpRight",
+        "animated slideOutRight", "animated zoomOutRight", "animated rollOut"];
+    var count = 0;
+
+        var rotateTerm = function rotateTerm() {
+            console.log("rotateTerm activated! count is" + count);
+            console.log("term length is " + terms.length);
+            if (count < terms.length) {
+                console.log("current count: " + count);
+                console.log("term length" + terms.length);
+                wordGen(terms[count]);
+            }
+            else {
+                console.log("reset count");
+                count = 0;
+                wordGen(terms[count])
+            }
+            console.log("raise count");
+            count = count + 1;
+            //rotateTerm();
+        }
+
+        function wordGen(t) {
+            console.log(t);
+            $("#rotate").text(t).addClass("animated zoomInLeft")//entrances[Math.floor((Math.random() * entrances.length) - 1)])
+                    .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                        $("#rotate").text(t).addClass("animated zoomOutRight")}//exits[Math.floor((Math.random() * exits.length))]
+            )
+//                    })
+        }
+    setInterval(function() {
+        wordGen(terms[Math.floor(Math.random() * terms.length)]);
+    }, 2000);
+</script>
+<!--<script>-->
+    <!--var terms = ["term 1", "term 2", "term 3", "term 4"];-->
+    <!--var entrances = ["animated bounceInLeft", "animated fadeInLeft", "rotateInDownLeft", "rotateInUpLeft",-->
+        <!--"slideInLeft", "zoomInLeft", "rollIn"];-->
+    <!--var exits = ["animated bounceOutRight", "animated fadeOutRight", "rotateOutDownRight", "rotateOutUpRight",-->
+        <!--"slideOutRight", "zoomOutRight", "rollOut"];-->
+    <!--var count = 0;-->
+
+    <!--var rotateTerm = function rotateTerm() {-->
+        <!--if (count -->
+    <!--}-->
+<!--</script>-->
+<!--<script>-->
+    <!--var terms = ["term 1", "term 2", "term 3"];-->
+
+    <!--function rotateTerm() {-->
+        <!--var ct = $("#rotate").data("term") || 0;-->
+        <!--$("#rotate").data("term", ct == terms.length - 1 ? 0 : ct + 1).text(terms[ct]).fadeIn()-->
+                <!--.delay(2000).fadeOut(200, rotateTerm);-->
+    <!--}-->
+    <!--$(rotateTerm);-->
+<!--</script>-->
+</body>
+</html>
